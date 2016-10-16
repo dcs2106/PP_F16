@@ -16,7 +16,7 @@ int main(int argc,char *argv[])
 	
 	long thread;
 
-	number_of_toss=atoi(argv[1]);
+	sscanf(argv[1],"%lld",&number_of_toss);
 	srand(time(NULL));
 	pthread_t *thread_handles;
 	pthread_t thread1,thread2,thread3,thread4;
@@ -29,9 +29,9 @@ int main(int argc,char *argv[])
 	for(thread = 0; thread < thread_count ; thread++)
 		pthread_join(thread_handles[thread],NULL);
 	
-	
 	pthread_mutex_destroy(&mutex);
-	
+	free(thread_handles);
+	printf("%lld    %lld\n",number_in_circle,number_of_toss);
 	printf("The answer is %f\n",4*number_in_circle/(double)number_of_toss);
 	return 0;
 }
@@ -50,4 +50,5 @@ void *pick()
 			pthread_mutex_unlock(&mutex);
 		}
 	}
+	pthread_exit(NULL);
 }
