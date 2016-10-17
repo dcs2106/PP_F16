@@ -30,6 +30,7 @@ int main(int argc,char *argv[])
 		pthread_join(thread_handles[thread],NULL);
 	
 	pthread_mutex_destroy(&mutex);
+	pthread_exit(NULL);
 	free(thread_handles);
 	printf("number_in_circle: %lld \n"    
 	       "number_of_toss: %lld\n",number_in_circle,number_of_toss);
@@ -46,10 +47,10 @@ void *pick()
 		y = ((rand()%100000)+1)/100000.0;
 		distance_squared = x*x+y*y;
 		if(distance_squared <= 1){
-			//pthread_mutex_lock(&mutex);
+			pthread_mutex_lock(&mutex);
 			number_in_circle++;
-			//pthread_mutex_unlock(&mutex);
+			pthread_mutex_unlock(&mutex);
 		}
 	}
-	pthread_exit(NULL);
+	return NULL;
 }
