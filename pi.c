@@ -35,23 +35,23 @@ int main(int argc,char *argv[])
 	printf("number_in_circle: %lld \n"    
 	       "number_of_toss: %lld\n",number_in_circle,number_of_toss);
 	printf("The answer is %f\n",4*number_in_circle/(double)number_of_toss);
-	pthread_exit(NULL);
 	return 0;
 }
 void *pick()
 {
 	double x,y,distance_squared;
 	long long int toss,
-		      bound=number_of_toss/thread_count;
+		      bound=number_of_toss/thread_count,
+		      tmp=0;
 	for(toss=0;toss < bound;toss++){
-		x = ((rand()%100000)+1)/100000.0;
-		y = ((rand()%100000)+1)/100000.0;
+		x = ((rand()%20000)-9999)/10000.0;
+		y = ((rand()%20000)-9999)/10000.0;
 		distance_squared = x*x+y*y;
-		if(distance_squared <= 1){
-			pthread_mutex_lock(&mutex);
-			number_in_circle++;
-			pthread_mutex_unlock(&mutex);
-		}
+		if(distance_squared <= 1)
+			tmp++;
 	}
-	return NULL;
+	pthread_mutex_lock(&mutex);
+	number_in_circle+=tmp;
+	pthread_mutex_unlock(&mutex);
+	pthread_exit(NULL);
 }
