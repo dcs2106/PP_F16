@@ -24,7 +24,7 @@ int main(int argc,char *argv[])
 	thread_handles = (pthread_t *)malloc (thread_count*sizeof(pthread_t));
 	pthread_mutex_init(&mutex,NULL);//mutex initial
 	for(thread = 0; thread < thread_count ; thread++)
-		pthread_create(&thread_handles[thread],NULL,pick,thread);
+		pthread_create(&thread_handles[thread],NULL,pick,NULL);
 	
 	
 	for(thread = 0; thread < thread_count ; thread++)
@@ -44,10 +44,16 @@ void *pick()
 	long long int toss,
 		      bound=number_of_toss/thread_count,
 		      tmp=0;
+<<<<<<< HEAD
 	
 	for(toss=0;toss < bound;toss++){
 		x = (((rand_r(&global_seed)%20000)-9999)/10000.0);
 		y = (((rand_r(&global_seed)%20000)-9999)/10000.0);
+=======
+	for(toss=0;toss < bound;toss++){
+		x = ((rand()%20000)-9999)/10000.0;
+		y = ((rand()%20000)-9999)/10000.0;
+>>>>>>> d905d912cab122a3b07fd550a9f178c31a25c5f9
 		distance_squared = x*x+y*y;
 		if(distance_squared <= 1)
 			tmp++;
