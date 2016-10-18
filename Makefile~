@@ -1,5 +1,5 @@
 all:pi.o single.o
-pi.o:pi.c
+pi.o:
 	gcc pi.c -o pi -lpthread
-single.o:single.c
+single.o:
 	gcc single.c -o single
