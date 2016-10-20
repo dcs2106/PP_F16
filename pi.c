@@ -33,9 +33,9 @@ int main(int argc,char *argv[])
 	pthread_mutex_destroy(&mutex);
 	
 	free(thread_handles);
-	printf("number_in_circle: %lld \n"    
-	       "number_of_toss: %lld\n",number_in_circle,number_of_toss);
-	printf("The answer is %f\n",4*number_in_circle/(double)number_of_toss);
+	//printf("number_in_circle: %lld \n"    
+	//       "number_of_toss: %lld\n",number_in_circle,number_of_toss);
+	printf("%f\n",4*number_in_circle/(double)number_of_toss);
 	pthread_exit(NULL);
 	return 0;
 }

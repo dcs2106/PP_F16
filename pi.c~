@@ -36,6 +36,7 @@ int main(int argc,char *argv[])
 	printf("number_in_circle: %lld \n"    
 	       "number_of_toss: %lld\n",number_in_circle,number_of_toss);
 	printf("The answer is %f\n",4*number_in_circle/(double)number_of_toss);
+	pthread_exit(NULL);
 	return 0;
 }
 void *pick()
@@ -55,6 +56,5 @@ void *pick()
 	pthread_mutex_lock(&mutex);
 	number_in_circle+=tmp;
 	pthread_mutex_unlock(&mutex);
-	pthread_exit(NULL);
 }
 
